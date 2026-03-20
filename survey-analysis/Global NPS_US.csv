@@ -1,0 +1,11 @@
+ResponseID,Date,Region,Country,NPS_Score,Promoter_Category,Comments
+1,2024-01-15,North America,US,9,Promoter,"Great product, very satisfied"
+2,2024-01-16,North America,US,7,Passive,"Good but could improve support"
+3,2024-01-17,North America,US,3,Detractor,"Too many bugs, frustrating experience"
+4,2024-01-18,North America,US,10,Promoter,"Excellent service, highly recommend"
+5,2024-01-19,North America,US,6,Passive,"Average experience"
+6,2024-01-20,North America,US,2,Detractor,"Poor customer service"
+7,2024-01-21,North America,US,8,Promoter,"Very happy with the product"
+8,2024-01-22,North America,US,9,Promoter,"Would definitely recommend"
+9,2024-01-23,North America,US,5,Detractor,"Not worth the price"
+10,2024-01-24,North America,US,10,Promoter,"Best product I've used"
