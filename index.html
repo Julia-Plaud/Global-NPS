@@ -1,8 +1,68 @@
 <!DOCTYPE html>
 <!-- saved from url=(0239)file:///Users/julialin/Library/Application%20Support/Claude/local-agent-mode-sessions/e132a11a-8569-4eda-bfa4-49d67e806de3/962a1e9d-e789-405b-9dfb-840d471f8f2b/local_10e9c9a4-0bf9-4a3a-a115-baa8ddbf4420/outputs/Plaud_Q1_2026_Dashboard.html -->
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html lang="en" style="visibility: visible;"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
+<script>
+(function(){
+  const PASS = 'q12026plaud';
+  const KEY  = 'plaud_dash_auth';
+  function showGate(){
+    document.documentElement.style.visibility='hidden';
+    document.addEventListener('DOMContentLoaded',function(){
+      document.documentElement.style.visibility='visible';
+      // Inject gate UI
+      const gate = document.createElement('div');
+      gate.id='auth-gate';
+      gate.innerHTML=`
+        <div id="auth-box">
+          <div id="auth-logo">PLAUD</div>
+          <div id="auth-title">Q1 2026 NPS Dashboard</div>
+          <div id="auth-sub">Enter password to access</div>
+          <input type="password" id="auth-input" placeholder="Password" autocomplete="current-password"/>
+          <button id="auth-btn">Unlock</button>
+          <div id="auth-err"></div>
+        </div>`;
+      const style = document.createElement('style');
+      style.textContent=`
+        #auth-gate{position:fixed;inset:0;background:#0D1F3C;display:flex;align-items:center;justify-content:center;z-index:99999;font-family:'Segoe UI',Arial,sans-serif;}
+        #auth-box{background:#fff;border-radius:16px;padding:40px 48px;text-align:center;width:360px;box-shadow:0 20px 60px rgba(0,0,0,.4);}
+        #auth-logo{font-size:28px;font-weight:900;letter-spacing:-1px;color:#0D1F3C;margin-bottom:6px;}
+        #auth-title{font-size:15px;font-weight:700;color:#0D1F3C;margin-bottom:4px;}
+        #auth-sub{font-size:12px;color:#6B7A99;margin-bottom:24px;}
+        #auth-input{width:100%;padding:11px 14px;border:1.5px solid #D0DBF0;border-radius:8px;font-size:14px;outline:none;margin-bottom:12px;box-sizing:border-box;transition:border .15s;}
+        #auth-input:focus{border-color:#1A5EBF;}
+        #auth-btn{width:100%;padding:11px;background:#1A5EBF;color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;transition:background .15s;}
+        #auth-btn:hover{background:#0D1F3C;}
+        #auth-err{color:#B71C1C;font-size:12px;margin-top:10px;min-height:18px;}
+        body.locked{overflow:hidden;}`;
+      document.head.appendChild(style);
+      document.body.appendChild(gate);
+      document.body.classList.add('locked');
+      const input=document.getElementById('auth-input');
+      const btn=document.getElementById('auth-btn');
+      const err=document.getElementById('auth-err');
+      function tryUnlock(){
+        if(input.value===PASS){
+          sessionStorage.setItem(KEY,'1');
+          gate.style.opacity='0';
+          gate.style.transition='opacity .3s';
+          setTimeout(()=>{gate.remove();document.body.classList.remove('locked');},300);
+        } else {
+          err.textContent='Incorrect password. Please try again.';
+          input.value='';input.focus();
+          input.style.borderColor='#B71C1C';
+          setTimeout(()=>input.style.borderColor='',1200);
+        }
+      }
+      btn.addEventListener('click',tryUnlock);
+      input.addEventListener('keydown',e=>{if(e.key==='Enter')tryUnlock();});
+      input.focus();
+    });
+  }
+  if(sessionStorage.getItem(KEY)!=='1') showGate();
+})();
+</script>
 <title>Plaud Q1 2026 — NPS Dashboard</title>
 <script src="./index_files/chart.umd.min.js"></script>
 <style>
@@ -134,8 +194,19 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#EEF3FA;color:var(--text
 
 .footer{text-align:center;color:var(--muted);font-size:11px;padding:26px}
 </style>
-</head>
-<body>
+<style>
+        #auth-gate{position:fixed;inset:0;background:#0D1F3C;display:flex;align-items:center;justify-content:center;z-index:99999;font-family:'Segoe UI',Arial,sans-serif;}
+        #auth-box{background:#fff;border-radius:16px;padding:40px 48px;text-align:center;width:360px;box-shadow:0 20px 60px rgba(0,0,0,.4);}
+        #auth-logo{font-size:28px;font-weight:900;letter-spacing:-1px;color:#0D1F3C;margin-bottom:6px;}
+        #auth-title{font-size:15px;font-weight:700;color:#0D1F3C;margin-bottom:4px;}
+        #auth-sub{font-size:12px;color:#6B7A99;margin-bottom:24px;}
+        #auth-input{width:100%;padding:11px 14px;border:1.5px solid #D0DBF0;border-radius:8px;font-size:14px;outline:none;margin-bottom:12px;box-sizing:border-box;transition:border .15s;}
+        #auth-input:focus{border-color:#1A5EBF;}
+        #auth-btn{width:100%;padding:11px;background:#1A5EBF;color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;transition:background .15s;}
+        #auth-btn:hover{background:#0D1F3C;}
+        #auth-err{color:#B71C1C;font-size:12px;margin-top:10px;min-height:18px;}
+        body.locked{overflow:hidden;}</style></head>
+<body class="">
 
 <!-- TOP BAR -->
 <div class="topbar">
@@ -237,16 +308,16 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#EEF3FA;color:var(--text
   <!-- OVERVIEW -->
   <div class="tab-panel active" id="panel-overview">
     <div class="chart-grid">
-      <div class="card"><h3>NPS Score Distribution</h3><canvas id="c-nps-dist" width="297" height="148" style="display: block; box-sizing: border-box; height: 148px; width: 297px;"></canvas></div>
-      <div class="card"><h3>CSAT Distribution</h3><canvas id="c-csat-dist" width="297" height="148" style="display: block; box-sizing: border-box; height: 148px; width: 297px;"></canvas></div>
-      <div class="card"><h3>Retention Intent</h3><canvas id="c-retention" width="297" height="230" style="display: block; box-sizing: border-box; height: 230px; width: 297px;"></canvas></div>
-      <div class="card"><h3>Usage Frequency</h3><canvas id="c-freq" width="297" height="148" style="display: block; box-sizing: border-box; height: 148px; width: 297px;"></canvas></div>
-      <div class="card"><h3>Usage Duration</h3><canvas id="c-duration" width="297" height="148" style="display: block; box-sizing: border-box; height: 148px; width: 297px;"></canvas></div>
-      <div class="card"><h3>Product Perception (avg 1–5)</h3><canvas id="c-att" width="297" height="230" style="display: block; box-sizing: border-box; height: 230px; width: 297px;"></canvas></div>
-      <div class="card"><h3>Main Use Cases</h3><canvas id="c-scenarios" width="297" height="148" style="display: block; box-sizing: border-box; height: 148px; width: 297px;"></canvas></div>
-      <div class="card"><h3>Membership Mix</h3><canvas id="c-mem-mix" width="297" height="230" style="display: block; box-sizing: border-box; height: 230px; width: 297px;"></canvas></div>
-      <div class="card"><h3>Platform Mix</h3><canvas id="c-plt-mix" width="297" height="230" style="display: block; box-sizing: border-box; height: 230px; width: 297px;"></canvas></div>
-      <div class="card"><h3>Device Mix</h3><canvas id="c-dev-mix" width="297" height="230" style="display: block; box-sizing: border-box; height: 230px; width: 297px;"></canvas></div>
+      <div class="card"><h3>NPS Score Distribution</h3><canvas id="c-nps-dist" width="595" height="297" style="display: block; box-sizing: border-box; height: 148px; width: 297px;"></canvas></div>
+      <div class="card"><h3>CSAT Distribution</h3><canvas id="c-csat-dist" width="595" height="297" style="display: block; box-sizing: border-box; height: 148px; width: 297px;"></canvas></div>
+      <div class="card"><h3>Retention Intent</h3><canvas id="c-retention" width="595" height="460" style="display: block; box-sizing: border-box; height: 230px; width: 297px;"></canvas></div>
+      <div class="card"><h3>Usage Frequency</h3><canvas id="c-freq" width="595" height="297" style="display: block; box-sizing: border-box; height: 148px; width: 297px;"></canvas></div>
+      <div class="card"><h3>Usage Duration</h3><canvas id="c-duration" width="595" height="297" style="display: block; box-sizing: border-box; height: 148px; width: 297px;"></canvas></div>
+      <div class="card"><h3>Product Perception (avg 1–5)</h3><canvas id="c-att" width="595" height="460" style="display: block; box-sizing: border-box; height: 230px; width: 297px;"></canvas></div>
+      <div class="card"><h3>Main Use Cases</h3><canvas id="c-scenarios" width="595" height="297" style="display: block; box-sizing: border-box; height: 148px; width: 297px;"></canvas></div>
+      <div class="card"><h3>Membership Mix</h3><canvas id="c-mem-mix" width="595" height="460" style="display: block; box-sizing: border-box; height: 230px; width: 297px;"></canvas></div>
+      <div class="card"><h3>Platform Mix</h3><canvas id="c-plt-mix" width="595" height="460" style="display: block; box-sizing: border-box; height: 230px; width: 297px;"></canvas></div>
+      <div class="card"><h3>Device Mix</h3><canvas id="c-dev-mix" width="595" height="460" style="display: block; box-sizing: border-box; height: 230px; width: 297px;"></canvas></div>
     </div>
   </div>
 
